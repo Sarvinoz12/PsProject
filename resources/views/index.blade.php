@@ -15,129 +15,32 @@
           Bizning quyidagi hizmatlarimizdan foydalanishingiz mumkin:
         </p>
       </div>
-      <div class="row">
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/bolalarucun.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Bolalar / o’smirlar uchun maslahat (15 yoshgacha)
-              </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>1 soat</span> 400 ming so'm
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
-            </div>
-          </div>
+        <div class="row">
+            @foreach($services as $service)
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="{{$service->image}}" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                {{$service->name}}
+                            </h5>
+                            <div class="price_box">
+                                <h6 class="price_heading">
+                                    <span>{{$service->continuity}} soat </span> {{$service->price}} $
+                                </h6>
+                                <a href="">
+                                    Yozilish
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+
         </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/onlayn2.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Onlayn konsultatsiya
-              </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>1 soat</span> 450 ming so'm
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/yakka.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-               Kattalar uchun yakkama-yakka konsultatsiya
-              </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>1 soat</span> 450 ming so'm
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/oilaviykonsul.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Oilaviy konsultatsiya
-              </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>1 soat</span> 700 ming so'm
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/guruh....jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                	Guruh ishi
-                    (muammolarga yo’naltirilgan guruhlar)
-              </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>1 soat</span> 300 ming so'm
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/individual..jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                Individual konsultatsiya
-              </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>1 soat</span> 400 ming so'm
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -146,32 +49,39 @@
 
   <!-- about section -->
 
-  <section class="about_section layout_padding long_section">
+<section class="blog_section layout_padding">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="img-box">
-            <img src="images/about1.jpg" alt="">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
+        <div class="heading_container">
+            <h2>
                 Biz haqimizda
-              </h2>
-            </div>
-            <p>
-              Bizning markaz 2020 - yilda tashkil etilgan. Biz sizga har xil turdagi hizmatlarni taklif qilamiz.Biz bilan har qanday muammolaringizga yechim topishingiz mumkin.
-            </p>
-            <a href="">
-              Ko'proq
-            </a>
-          </div>
+            </h2>
         </div>
-      </div>
+
+        <div class="row">
+            @foreach($psixologs as $psixolg)
+            <div class="col-md-6 col-lg-4 mx-auto">
+                <div class="box">
+                    <div class="img-box">
+                        <img src="images/test1.png" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h6>
+                            <b>{{$psixolg->user->name}}</b>
+                        </h6>
+                        <p>
+                            <b>Tajribasi: {{$psixolg->Tajriba}}</b>
+                            <br>Mutaxasisligi: {{$psixolg->spes}}</b>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
     </div>
-  </section>
+
+</section>
 
   <!-- end about section -->
 
@@ -254,95 +164,7 @@ Oddiy narsalardan ham yangi g‘oyalar chiqarish qobiliyatingiz bor.
 
   <!-- client section -->
 
-  <section class="client_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Psixolog haqida
-        </h2>
-      </div>
-      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="col-md-11 col-lg-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="images/client.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <div class="name">
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                      <h6>
-                        Sarvinoz Razzaqberdiyeva
-                      </h6>
-                    </div>
-                    <p>
-                      1996 - yilda Toshkent shahrida tug'ulgan.<br>
-                      2018 - yilda O‘zbekiston Milliy universitetining bakalavr yo'nalishini tamomlagan.<br>
-                      2020 - yilda O‘zbekiston Milliy universitetining magistr yo'nalishini tamomlagan.<br>
-                      2024 - yilda 4 - yillik tajribaga ega psixolog.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-md-11 col-lg-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="images/client.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <div class="name">
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                      <h6>
-                        Sarvinoz Razzaqberdiyeva
-                      </h6>
-                    </div>
-                    <p>
-                      1996 - yilda Toshkent shahrida tug'ulgan.<br>
-                      2018 - yilda O‘zbekiston Milliy universitetining bakalavr yo'nalishini tamomlagan.<br>
-                      2020 - yilda O‘zbekiston Milliy universitetining magistr yo'nalishini tamomlagan.<br>
-                      2024 - yilda 4 - yillik tajribaga ega psixolog.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-md-11 col-lg-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="images/client.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <div class="name">
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                      <h6>
-                        Sarvinoz Razzaqberdiyeva
-                      </h6>
-                    </div>
-                    <p>
-                      1996 - yilda Toshkent shahrida tug'ulga.n<br>
-                      2018 - yilda O‘zbekiston Milliy universitetining bakalavr yo'nalishini tamomlagan.<br>
-                      2020 - yilda O‘zbekiston Milliy universitetining magistr yo'nalishini tamomlagan.<br>
-                      2024 - yilda 4 - yillik tajribaga ega psixolog.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-      </div>
-    </div>
-  </section>
 
 
   <!-- end client section -->
