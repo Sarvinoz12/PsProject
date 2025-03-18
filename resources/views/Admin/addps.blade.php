@@ -1,29 +1,36 @@
 @extends('Admin.Admin Layot.master')
 @section('admin.content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
         <div class="recipe-form-wrapper">
-            <form action="add-recipe-action.php" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <!-- Retsept nomi -->
                 <div class="form-group">
-                    <label for="recipeName">Retsept Nomi</label>
-                    <input type="text" id="recipeName" name="recipeName"  required>
+                    <label for="recipeName">Name</label>
+                    <input type="text" id="name" name="name"  required>
                 </div>
-
-                <!-- Masalliqlar -->
                 <div class="form-group">
-                    <label for="ingredients">Masalliqlar</label>
-                    <textarea id="ingredients" name="ingredients" rows="4"  required></textarea>
+                    <label for="recipeName">Tajriba</label>
+                    <input type="text" id="tajriba" name="tajriba"  required>
                 </div>
-
-                <!-- Tayyorlanish -->
                 <div class="form-group">
-                    <label for="instructions">Tayyorlanish</label>
-                    <textarea id="instructions" name="instructions" rows="6"  required></textarea>
+                    <label for="recipeName">Mutaxassisli</label>
+                    <input type="text" id="spes" name="spes"  required>
                 </div>
 
                 <!-- Rasm yuklash -->
                 <div class="form-group">
-                    <label for="recipeImage">Retsept Rasm</label>
-                    <input type="file" id="recipeImage" name="recipeImage" accept="image/*" required>
+                    <label for="recipeImage">Rasm</label>
+                    <input type="file" id="Image" name="image" accept="image/*" required>
                 </div>
 
                 <!-- Tugmalar -->

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('psixologs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('name');
             $table->string('image')->nullable();
-            $table->string('Tajriba')->default(1);
-            $table->string('spes')->default('Test');
+            $table->integer('tajriba')->default(1);
+            $table->string('spes')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +27,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('psixologs');
+        Schema::table('psixologs', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
     }
 };

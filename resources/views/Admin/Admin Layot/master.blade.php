@@ -40,18 +40,18 @@
 
     <div class="sidebar-content">
         <div class="sidebar">
-            <a href="{{route('admin.main')}}">Dashboard</a>
-            <a href="{{route('admin.addps')}}">Retsept Qo'shish</a>
-            <a href="{{route('admin.allps')}}">Umumiy Retseptlar</a>
+            <a href="{{route('admin.dashbord')}}">Dashboard</a>
+            <a href="{{route('admin.create')}}">Retsept Qo'shish</a>
+            <a href="{{route('admin.index')}}">Umumiy Retseptlar</a>
         </div>
 
 @yield('admin.content')
 
     <div class="sidebar-content">
         <div class="sidebar">
-            <a href="{{route('admin.main')}}">Dashboard</a>
-            <a href="{{route('admin.addps')}}">Retsept Qo'shish</a>
-            <a href="{{route('admin.allps')}}">Umumiy Retseptlar</a>
+            <a href="{{route('admin.dashbord')}}">Dashboard</a>
+            <a href="{{route('admin.create')}}">Retsept Qo'shish</a>
+            <a href="{{route('admin.index')}}">Umumiy Retseptlar</a>
         </div>
         </div>
     </div>

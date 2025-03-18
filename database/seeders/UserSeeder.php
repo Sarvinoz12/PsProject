@@ -37,12 +37,12 @@ class UserSeeder extends Seeder
         ]);
 
         $users=User::factory(10)->create();
-        foreach ($users as $user) {
-            if ($user->role_id == 2) {
-                Psixolog::create([
-                    'user_id' => $user->id,
-                ]);
-            }
-        }
+//        foreach ($users as $user) {
+//            if ($user->role_id == 2) {
+//                Psixolog::create([
+//                    'user_id' => $user->id,
+//                ]);
+//            }
+//        }
     }
 }

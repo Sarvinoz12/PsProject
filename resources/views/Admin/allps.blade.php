@@ -6,27 +6,33 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Retsept Nomi</th>
-                        <th>Masalliqlar</th>
-                        <th>Tayyorlanishi</th>
-                        <th>Kim tomonidan yaratilgan</th>
-                        <th>Harakatlar</th>
+                        <th>Nomi</th>
+                        <th>Mutaxasiligi</th>
+                        <th>Tajribasi</th>
+                        <th>Rasmi</th>
                     </tr>
                 </thead>
+                @foreach($psixologs as $psixolog)
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Osh</td>
-                        <td>100g guruch, 200g go'sht, sabzavotlar</td>
-                        <td>1 soat davomida qovurish va suzish</td>
-                        <td>Admin</td>
+                        <td>{{$psixolog->id}}</td>
+                        <td>{{$psixolog->name}}</td>
+                        <td>{{$psixolog->spes}}</td>
+                        <td>{{$psixolog->tajriba}}</td>
+                        <td>{{$psixolog->image}}</td>
                         <td>
-                            <button class="button green" onclick="window.location.href='editRecipes.html?id=1'">Tahrirlash</button>
-                            <button class="button red" onclick="deleteRecipe(1)">O'chirish</button>
+                            <a href="{{ route('admin.edit', $psixolog->id) }}" class="btn btn-primary">Tahrirlash</a>
+
+                            <form action="{{ route('admin.destroy', $psixolog->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">O‘chirish</button>
+                            </form>
                         </td>
                     </tr>
-                    <!-- Boshqa retseptlar shu yerda bo'ladi -->
+
                 </tbody>
+                @endforeach
             </table>
         </div>
 

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             ServiceSeeder::class,
-            PsixolgSeeder::class,
+//            PsixolgSeeder::class,
         ]);
     }
 }

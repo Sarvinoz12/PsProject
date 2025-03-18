@@ -13,6 +13,6 @@ class PsixolgSeeder extends Seeder
      */
     public function run(): void
     {
-        Psixolog::factory()->count(10)->create();
+//        Psixolog::factory()->count(10)->create();
     }
 }
