@@ -1,29 +1,27 @@
 @extends('Ps.PsLayot.master')
 @section('ps.content')
         <div class="recipe-form-wrapper">
-            <form action="add-recipe-action.php" method="POST" enctype="multipart/form-data">
+            <form action="{{route('ps.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <!-- Retsept nomi -->
                 <div class="form-group">
-                    <label for="recipeName">Retsept Nomi</label>
-                    <input type="text" id="recipeName" name="recipeName"  required>
+                    <label>Name:</label>
+                    <input type="text" name="name" class="form-control" required>
                 </div>
 
-                <!-- Masalliqlar -->
                 <div class="form-group">
-                    <label for="ingredients">Masalliqlar</label>
-                    <textarea id="ingredients" name="ingredients" rows="4"  required></textarea>
+                    <label>Price:</label>
+                    <input type="number" name="price" class="form-control" required>
                 </div>
 
-                <!-- Tayyorlanish -->
                 <div class="form-group">
-                    <label for="instructions">Tayyorlanish</label>
-                    <textarea id="instructions" name="instructions" rows="6"  required></textarea>
+                    <label>Image:</label>
+                    <input type="file" name="image" class="form-control">
                 </div>
 
-                <!-- Rasm yuklash -->
                 <div class="form-group">
-                    <label for="recipeImage">Retsept Rasm</label>
-                    <input type="file" id="recipeImage" name="recipeImage" accept="image/*" required>
+                    <label>Continuity:</label>
+                    <input type="number" name="continuity" class="form-control" required>
                 </div>
 
                 <!-- Tugmalar -->

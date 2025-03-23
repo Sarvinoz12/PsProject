@@ -5,28 +5,33 @@
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Retsept Nomi</th>
-                        <th>Masalliqlar</th>
-                        <th>Tayyorlanishi</th>
-                        <th>Kim tomonidan yaratilgan</th>
-                        <th>Harakatlar</th>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Continuity</th>
+                        <th>Image</th>
                     </tr>
                 </thead>
+                @foreach($services as $service)
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Osh</td>
-                        <td>100g guruch, 200g go'sht, sabzavotlar</td>
-                        <td>1 soat davomida qovurish va suzish</td>
-                        <td>Admin</td>
+                        <td>{{$service->id}}</td>
+                        <td>{{$service->name}}</td>
+                        <td>{{$service->price}}</td>
+                        <td>{{$service->continuity}}</td>
+                        <td>{{$service->image}}</td>
                         <td>
-                            <button class="button green" onclick="window.location.href='editRecipes.html?id=1'">Tahrirlash</button>
-                            <button class="button red" onclick="deleteRecipe(1)">O'chirish</button>
+                            <a href="{{ route('ps.edit', $service->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('ps.destroy', $service->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     <!-- Boshqa retseptlar shu yerda bo'ladi -->
                 </tbody>
+                @endforeach
             </table>
         </div>
 

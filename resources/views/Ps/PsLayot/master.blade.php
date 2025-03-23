@@ -26,11 +26,13 @@
 
             <!-- Admin menyusi -->
             <div class="dropdown">
-                <a href="#" class="dropdown-toggle" id="adminDropdown">Admin</a>
-                <ul class="dropdown-menu" id="dropdownMenu">
-                    <li><a href="editProfile.html">Edit Profile</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Chiqish
+                </a>
             </div>
         </div>
     </div>
@@ -41,8 +43,8 @@
     <div class="sidebar-content">
         <div class="sidebar">
             <a href="{{route('ps.main')}}">Dashboard</a>
-            <a href="{{route('ps.addfurn')}}">Retsept Qo'shish</a>
-            <a href="{{route('ps.allfurn')}}">Umumiy Retseptlar</a>
+            <a href="{{route('ps.create')}}">Retsept Qo'shish</a>
+            <a href="{{route('ps.index')}}">Umumiy Retseptlar</a>
         </div>
 
 @yield('ps.content')
@@ -50,8 +52,8 @@
     <div class="sidebar-content">
         <div class="sidebar">
             <a href="{{route('ps.main')}}">Dashboard</a>
-            <a href="{{route('ps.addfurn')}}">Retsept Qo'shish</a>
-            <a href="{{route('ps.allfurn')}}">Umumiy Retseptlar</a>
+            <a href="{{route('ps.create')}}">Retsept Qo'shish</a>
+            <a href="{{route('ps.index')}}">Umumiy Retseptlar</a>
         </div>
         </div>
     </div>

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
+            $table->string('email')->unique(); // Email uchun ustun
+            $table->string('password');
             $table->integer('tajriba')->default(1);
             $table->string('spes')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');

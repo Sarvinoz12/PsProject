@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PsPageCantroller extends Controller
 {
 public function main(){
-        return view('Ps.main');
+        return view('index');
 }
 public function addfurn(){
         return view('Ps.addfurn');

@@ -12,9 +12,8 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
 public function index(){
-        $psixologs = Psixolog::take(6)->whereHas('user', function ($query) {
-        $query->where('role_id', 2);
-    })->get();
+
+        $psixologs = Psixolog::all();
         $services=Service::take(6)->get();
         return view('index',compact('psixologs','services'));
 }

@@ -67,18 +67,40 @@
             </ul>
 
           </div>
-          <div class="quote_btn-container">
-            <a href="">
-              <span>
-                Login
-              </span>
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </a>
+            <div class="quote_btn-container">
+                @if(Auth::check())
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>
+                    {{ Auth::user()->name }}
+                </span>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Chiqish
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}">
+                        <span>Login</span>
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                @endif
+            </div>
+
+
             <form class="form-inline">
               <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
             </form>
+
           </div>
         </div>
       </nav>

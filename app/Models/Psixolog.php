@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Psixolog extends Model
 {
     use HasFactory;
-    protected $fillable=['name','image','tajriba','spes','user_id'];
+    protected $fillable=['name','image','tajriba','spes','user_id','email','password'];
 
     public function user(){
         return $this->belongsTo(User::class);

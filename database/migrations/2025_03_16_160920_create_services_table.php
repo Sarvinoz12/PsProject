@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('price');
             $table->string('image')->nullable();
             $table->string('continuity')->default('1');
-            $table->foreignId('user_id')->nullable()->constrained();
+//            $table->foreignId('psixolog_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

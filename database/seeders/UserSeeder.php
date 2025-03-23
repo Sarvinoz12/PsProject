@@ -22,21 +22,21 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role_id' => 1
         ]);
-        User::create([
-            'name' => 'Psixolg',
-            'email' => 'psixolg@gmail.com',
-            'password' => Hash::make('password'),
+//        User::create([
+//            'name' => 'Psixolg',
+//            'email' => 'psixolg@gmail.com',
+//            'password' => Hash::make('password'),
+//
+//            'role_id' => 2
+//        ]);
+//        User::create([
+//            'name' => 'User',
+//            'email' => 'userg@gmail.com',
+//            'password' => Hash::make('password'),
+//            'role_id' => 3
+//        ]);
 
-            'role_id' => 2
-        ]);
-        User::create([
-            'name' => 'User',
-            'email' => 'userg@gmail.com',
-            'password' => Hash::make('password'),
-            'role_id' => 3
-        ]);
-
-        $users=User::factory(10)->create();
+//        $users=User::factory(10)->create();
 //        foreach ($users as $user) {
 //            if ($user->role_id == 2) {
 //                Psixolog::create([

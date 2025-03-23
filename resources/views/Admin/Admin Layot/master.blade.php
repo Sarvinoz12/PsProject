@@ -27,10 +27,13 @@
             <!-- Admin menyusi -->
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle" id="adminDropdown">Admin</a>
-                <ul class="dropdown-menu" id="dropdownMenu">
-                    <li><a href="editProfile.html">Edit Profile</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Chiqish
+                </a>
             </div>
         </div>
     </div>

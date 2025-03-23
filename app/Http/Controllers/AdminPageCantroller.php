@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Psixolog;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AdminPageCantroller extends Controller
@@ -11,7 +13,7 @@ class AdminPageCantroller extends Controller
     /**
      * Barcha psixologlarni ko‘rsatish
      */
-    public function dashbord()
+    public function dashboard()
     {
         return view('admin.main');
     }
@@ -37,20 +39,24 @@ class AdminPageCantroller extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'email' => 'required|email|unique:psixologs,email',
+            'password' => 'required|string|min:6',
             'tajriba' => 'required|integer|min:1',
             'spes' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = $request->all();
         $data['user_id'] = auth()->id(); // Hozirgi foydalanuvchini bog‘lash
+        $data['password'] = Hash::make($request->password); // Parolni hash qilish
+        $data['email'] = $request->email;
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('psixolog_images', 'public');
         }
 
         Psixolog::create($data);
-
+//        User::create($data);
         return redirect()->route('admin.index')->with('success', 'Psixolog qo‘shildi!');
     }
 
@@ -79,12 +85,19 @@ class AdminPageCantroller extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:psixologs,email,' . $psixolog->id, // Email unikalligi tekshirildi
+            'password' => 'nullable|string|min:6', // Parol ixtiyoriy
             'tajriba' => 'required|integer|min:1',
             'spes' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = $request->only(['name', 'tajriba', 'spes']);
+        $data = $request->only(['name', 'email', 'tajriba', 'spes']);
+
+        // Parolni yangilash faqat foydalanuvchi yangi parol kiritsa amalga oshadi
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
 
         if ($request->hasFile('image')) {
             // Eski rasmni o‘chirish (agar mavjud bo‘lsa)
@@ -97,10 +110,10 @@ class AdminPageCantroller extends Controller
         }
 
         $psixolog->update($data);
-//        dd($data);
 
         return redirect()->route('admin.index')->with('success', 'Psixolog yangilandi!');
     }
+
 
 
     /**
