@@ -20,7 +20,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
-                            <img src="{{$service->image}}" alt="">
+                            <img src="{{asset('storage/'.$service->image)}}" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
@@ -62,14 +62,14 @@
             <div class="col-md-6 col-lg-4 mx-auto">
                 <div class="box">
                     <div class="img-box">
-                        <img src="images/test1.png" alt="">
+                        <img src="{{asset('storage/'.$psixolg->image)}}" alt="">
                     </div>
                     <div class="detail-box">
                         <h6>
                             <b>{{$psixolg->user->name}}</b>
                         </h6>
                         <p>
-                            <b>Tajribasi: {{$psixolg->Tajriba}}</b>
+                            <b>Tajribasi: {{$psixolg->tajriba}}</b>
                             <br>Mutaxasisligi: {{$psixolg->spes}}</b>
                         </p>
 
