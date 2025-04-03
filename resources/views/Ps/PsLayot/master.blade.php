@@ -11,7 +11,7 @@
     <div class="navbar">
         <div class="admin-controls">
             <!-- Sayt nomi -->
-            <div class="site-name">Pazanda</div>
+            <div class="site-name">Ruhoniyat</div>
         </div>
 
         <div class="user-notification">
@@ -43,8 +43,8 @@
     <div class="sidebar-content">
         <div class="sidebar">
             <a href="{{route('ps.main')}}">Dashboard</a>
-            <a href="{{route('ps.create')}}">Retsept Qo'shish</a>
-            <a href="{{route('ps.index')}}">Umumiy Retseptlar</a>
+            <a href="{{route('ps.create')}}">Kurs Qo'shish</a>
+            <a href="{{route('ps.index')}}">Umumiy Kurslar</a>
         </div>
 
 @yield('ps.content')
@@ -52,8 +52,8 @@
     <div class="sidebar-content">
         <div class="sidebar">
             <a href="{{route('ps.main')}}">Dashboard</a>
-            <a href="{{route('ps.create')}}">Retsept Qo'shish</a>
-            <a href="{{route('ps.index')}}">Umumiy Retseptlar</a>
+            <a href="{{route('ps.create')}}">Kurs Qo'shish</a>
+            <a href="{{route('ps.index')}}">Umumiy Kurslar</a>
         </div>
         </div>
     </div>

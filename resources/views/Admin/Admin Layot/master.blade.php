@@ -11,7 +11,7 @@
     <div class="navbar">
         <div class="admin-controls">
             <!-- Sayt nomi -->
-            <div class="site-name">Pazanda</div>
+            <div class="site-name">Ruhoniyat</div>
         </div>
 
         <div class="user-notification">
@@ -44,8 +44,8 @@
     <div class="sidebar-content">
         <div class="sidebar">
             <a href="{{route('admin.dashbord')}}">Dashboard</a>
-            <a href="{{route('admin.create')}}">Retsept Qo'shish</a>
-            <a href="{{route('admin.index')}}">Umumiy Retseptlar</a>
+            <a href="{{route('admin.create')}}">Psixalog Qo'shish</a>
+            <a href="{{route('admin.index')}}">Umumiy Psixalog</a>
         </div>
 
 @yield('admin.content')
@@ -53,8 +53,8 @@
     <div class="sidebar-content">
         <div class="sidebar">
             <a href="{{route('admin.dashbord')}}">Dashboard</a>
-            <a href="{{route('admin.create')}}">Retsept Qo'shish</a>
-            <a href="{{route('admin.index')}}">Umumiy Retseptlar</a>
+            <a href="{{route('admin.create')}}">Psixolog Qo'shish</a>
+            <a href="{{route('admin.index')}}">Umumiy Psixologlar</a>
         </div>
         </div>
     </div>
