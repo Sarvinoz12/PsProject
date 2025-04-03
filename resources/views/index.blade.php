@@ -66,7 +66,7 @@
                     </div>
                     <div class="detail-box">
                         <h6>
-                            <b>{{$psixolg->user->name}}</b>
+                            <b>{{$psixolg->name}}</b>
                         </h6>
                         <p>
                             <b>Tajribasi: {{$psixolg->tajriba}}</b>
