@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCallingRequest;
+use App\Models\Calling;
 use App\Models\Psixolog;
 use App\Models\Service;
 use Illuminate\Contracts\Foundation\Application;
@@ -24,7 +26,13 @@ public function blog(){
         return view('blog');
 }
 public function cantact(){
-        return view('cantact');
+
+    return view('cantact');
+}
+public function sendcantact(StoreCallingRequest $request)
+{
+    Calling::create($request->validated());
+    return redirect()->back()->with('succses','Xabar adminga jo\'natildi');
 }
 public function furn()
 {

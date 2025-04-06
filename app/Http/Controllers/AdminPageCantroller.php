@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calling;
 use App\Models\Psixolog;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class AdminPageCantroller extends Controller
      */
     public function dashboard()
     {
-        return view('admin.main');
+        $callings=Calling::all();
+        return view('admin.main',compact('callings'));
     }
     public function index()
     {
@@ -125,5 +127,22 @@ class AdminPageCantroller extends Controller
         $psixolog->delete();
 
         return redirect()->route('admin.index')->with('success', 'Psixolog o‘chirildi!');
+    }
+    public function deletecalling($id)
+    {
+        // Xabarni topish
+        $calling = Calling::find($id);
+
+        // Agar xabar topilmasa, xato xabari yuborish
+        if (!$calling) {
+            return redirect()->route('admin.calling.index')->with('error', 'Xabar topilmadi.');
+        }
+
+        // Xabarni o'chirish
+        $calling->delete();
+
+        // O'chirilgandan so'ng, muvaffaqiyatli xabarni ko'rsatish
+        return redirect()->back()->with('success', 'Xabar muvaffaqiyatli o‘chirildi.');
+
     }
 }

@@ -55,4 +55,7 @@ class User extends Authenticatable
     {
         $this->hasMany(Psixolog::class);
     }
+    public function calling(){
+        return $this->hasOne(Calling::class);
+    }
 }
