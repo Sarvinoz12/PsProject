@@ -1,7 +1,7 @@
 @extends('Ps.PsLayot.master')
 @section('ps.content')
         <div class="recipe-form-wrapper">
-            <form action="{{route('ps.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('ps.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Retsept nomi -->
                 <div class="form-group">
@@ -30,5 +30,6 @@
                     <button type="reset" class="button yellow">Tozalash</button>
                 </div>
             </form>
+
         </div>
 @endsection

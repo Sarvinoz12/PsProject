@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'psixolog' => [
+            'driver' => 'session',
+            'provider' => 'psixologs',
+        ],
+
     ],
 
     /*
@@ -63,6 +69,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'psixologs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Psixolog::class,
         ],
 
         // 'users' => [

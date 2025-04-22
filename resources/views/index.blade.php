@@ -2,7 +2,45 @@
 @section('content')
 
 
+    <section class="slider_section long_section">
+        <div id="customCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="detail-box">
+                                    <h1>
+                                        Ruhoniyat
+                                    </h1>
+                                    <p>
+                                        Biz bilan dunyoni qayta kashf eting
+                                    </p>
+                                    <div class="btn-box">
+                                        <a href="{{route('cantact.page')}}" class="btn1">
+                                            Bog'lanish
+                                        </a>
+                                        <a href="{{route('about.page')}}" class="btn2">
+                                            Biz haqimizda
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="img-box">
+                                    <img src="images/image.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ol class="carousel-indicators">
+                <li data-target="#customCarousel" data-slide-to="0" class="active"></li>
 
+            </ol>
+        </div>
+    </section>
   <!-- furniture section -->
 
   <section class="furniture_section layout_padding">

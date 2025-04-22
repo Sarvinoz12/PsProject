@@ -21,8 +21,8 @@ class AdminPageCantroller extends Controller
     }
     public function index()
     {
-//        $psixologs = Psixolog::where('user_id', auth()->id())->get();
-        $psixologs = Psixolog::all();
+        $psixologs = Psixolog::where('user_id', auth()->id())->get();
+
         return view('admin.allps', compact('psixologs'));
     }
 
@@ -39,29 +39,45 @@ class AdminPageCantroller extends Controller
      */
     public function store(Request $request)
     {
+        // 1. Validatsiya
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:psixologs,email',
+            'email' => 'required|email|unique:psixologs,email|unique:users,email',
             'password' => 'required|string|min:6',
             'tajriba' => 'required|integer|min:1',
             'spes' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
-        $data['user_id'] = auth()->id(); // Hozirgi foydalanuvchini bog‘lash
-        $data['password'] = Hash::make($request->password); // Parolni hash qilish
-        $data['email'] = $request->email;
-
+        // 2. Rasmni yuklash (agar mavjud bo‘lsa)
+        $imagePath = null;
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('psixolog_images', 'public');
+            $imagePath = $request->file('image')->store('psixolog_images', 'public');
         }
 
-        Psixolog::create($data);
-//        User::create($data);
-        return redirect()->route('admin.index')->with('success', 'Psixolog qo‘shildi!');
-    }
+        // 3. Psixolog modeli uchun ma'lumotlar
+        $psixolog = Psixolog::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'tajriba' => $request->tajriba,
+            'spes' => $request->spes,
+            'image' => $imagePath,
+            'user_id' => auth()->id(),
+            'role_id' => 2,
+        ]);
 
+        // 4. User modeli uchun (auth ishlashi uchun)
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => 2,
+        ]);
+
+        // 5. Admin panelga qaytarish
+        return redirect()->route('admin.index')->with('success', 'Psixolog muvaffaqiyatli qo‘shildi!');
+    }
 
     /**
      * Bitta psixologni ko‘rsatish

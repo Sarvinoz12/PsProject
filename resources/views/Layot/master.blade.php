@@ -8,7 +8,7 @@
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
-  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <link rel="icon" href="{{asset('images/fevicon.png')}}" type="image/gif" />
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
@@ -17,17 +17,17 @@
 
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet" />
 
   <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
 
 </head>
 
@@ -59,8 +59,13 @@
                 <a class="nav-link" href="{{route('furn.page')}}">Xizmatlar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('blog.page')}}">Psixalogik test</a>
+                <a class="nav-link" href="{{route('blog.page')}}">Mutaxasislar</a>
               </li>
+                @auth()
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('price.page')}}">Narxlar</a>
+              </li>
+                @endauth
               <li class="nav-item">
                 <a class="nav-link" href="{{route('cantact.page')}}">Bog'lanish</a>
               </li>
@@ -105,45 +110,7 @@
         </div>
       </nav>
     </header>
-  <section class="slider_section long_section">
-      <div id="customCarousel" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-              <div class="carousel-item active">
-                  <div class="container ">
-                      <div class="row">
-                          <div class="col-md-5">
-                              <div class="detail-box">
-                                  <h1>
-                                      Ruhoniyat
-                                  </h1>
-                                  <p>
-                                      Biz bilan dunyoni qayta kashf eting
-                                  </p>
-                                  <div class="btn-box">
-                                      <a href="{{route('cantact.page')}}" class="btn1">
-                                          Bog'lanish
-                                      </a>
-                                      <a href="{{route('about.page')}}" class="btn2">
-                                          Biz haqimizda
-                                      </a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-7">
-                              <div class="img-box">
-                                  <img src="images/image.png" alt="">
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <ol class="carousel-indicators">
-              <li data-target="#customCarousel" data-slide-to="0" class="active"></li>
 
-          </ol>
-      </div>
-  </section>
     <!-- end header section -->
   </div>
 
@@ -151,11 +118,11 @@
 
 
   <!-- jQery -->
-  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
   <!-- bootstrap js -->
-  <script src="js/bootstrap.js"></script>
+  <script src="{{asset('js/bootstrap.js')}}"></script>
   <!-- custom js -->
-  <script src="js/custom.js"></script>
+  <script src="{{asset('js/custom.js')}}"></script>
   <!-- Google Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
   <!-- End Google Map -->
@@ -207,22 +174,22 @@
               </h5>
               <div class="post_box">
                 <div class="img-box">
-                  <img src="images/individual..jpg" alt="">
+                  <img src="{{asset('images/individual..jpg')}}" alt="">
                 </div>
                 <div class="img-box">
-                  <img src="images/oilaviykonsul.jpg" alt="">
+                  <img src="{{asset('images/oilaviykonsul.jpg')}}" alt="">
                 </div>
                 <div class="img-box">
-                  <img src="images/onlayn2.jpg" alt="">
+                  <img src="{{asset('images/onlayn2.jpg')}}" alt="">
                 </div>
                 <div class="img-box">
-                  <img src="images/yakka.jpg" alt="">
+                  <img src="{{asset('images/yakka.jpg')}}" alt="">
                 </div>
                 <div class="img-box">
-                  <img src="images/bolalarucun.jpg" alt="">
+                  <img src="{{asset('images/bolalarucun.jpg')}}" alt="">
                 </div>
                 <div class="img-box">
-                  <img src="images/guruh....jpg" alt="">
+                  <img src="{{asset('images/guruh....jpg')}}" alt="">
                 </div>
               </div>
             </div>

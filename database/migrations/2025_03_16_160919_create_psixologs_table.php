@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('email')->unique(); // Email uchun ustun
-            $table->string('password');
+            $table->string('password')->default('password');
             $table->integer('tajriba')->default(1);
             $table->string('spes')->nullable();
+            $table->foreignId('role_id')->default(2)->constrained();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });

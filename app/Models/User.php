@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -43,17 +45,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function roles(): void
+    public function role():BelongsTo
     {
-        $this->hasMany(Role::class);
+        return $this->belongsTo(Role::class);
     }
     public function services(): void
     {
         $this->hasMany(Service::class);
     }
-    public function psixologs()
+    public function psixolog()
     {
-        $this->hasMany(Psixolog::class);
+        return $this->hasOne(Psixolog::class);
     }
     public function calling(){
         return $this->hasOne(Calling::class);

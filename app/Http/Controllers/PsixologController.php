@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Psixolog;
 use App\Http\Requests\StorePsixologRequest;
 use App\Http\Requests\UpdatePsixologRequest;
 use App\Models\Service;
+use App\Notifications\BookingCancelledNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PsixologController extends Controller
@@ -16,9 +19,13 @@ class PsixologController extends Controller
         return view('ps.main');
     }
     public function index()
-    {   $services = Service::all();
+    {
+        $psixologId = auth('psixolog')->id();
 
-        return view('ps.allfurn', compact('services', ));
+        // Faqat shu psixologga tegishli servicelarni olish
+        $services = Service::where('user_id', $psixologId)->get();
+
+        return view('ps.allfurn', compact('services'));
     }
 
     public function create()
@@ -26,26 +33,34 @@ class PsixologController extends Controller
         return view('ps.addfurn');
     }
 
+    // Foydalanuvchi tizimga kirganini tekshirish
+// App\Http\Controllers\PsixologController.php
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'continuity' => 'required|integer'
+            'continuity' => 'required|integer',
         ]);
 
-        $imagePath = $request->file('image') ? $request->file('image')->store('services', 'public') : null;
+        $user = auth()->user();
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('services', 'public');
+        }
 
         Service::create([
             'name' => $request->name,
             'price' => $request->price,
             'image' => $imagePath,
             'continuity' => $request->continuity,
-            'psixolog_id' => auth()->id()
+            'user_id' => $user->id, // Faqat user_id bilan bog‘lanadi
         ]);
 
-        return redirect()->route('ps.index')->with('success', 'Service created successfully.');
+        return redirect()->route('ps.index')->with('success', 'Xizmat muvaffaqiyatli qo‘shildi.');
     }
 
     /**
@@ -128,4 +143,35 @@ class PsixologController extends Controller
         // Qayta yo‘naltirish
         return redirect()->route('ps.index')->with('success', 'Service deleted successfully!');
     }
+
+    // PsixologController yoki kerakli controller ichida
+
+    public function bookinguser()
+    {
+       $booking=Booking::all();
+       return view('ps.bookinguser', compact('booking'));
+    }
+
+    public function confirm($id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->status = 'Tasdiqlandi';
+        $booking->save();
+
+        return back()->with('success', 'Murojaat tasdiqlandi!');
+    }
+
+    public function destroy_booking($id)
+    {
+        $booking = Booking::findOrFail($id);
+
+        if ($booking->user) {
+            $booking->user->notify(new BookingCancelledNotification($booking));
+        }
+
+        $booking->delete();
+
+        return back()->with('error', 'Murojaat bekor qilindi!');
+    }
+
 }

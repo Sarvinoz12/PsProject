@@ -18,9 +18,10 @@ class PsixologFactory extends Factory
     public function definition(): array
     {
         return [
-//            'user_id' => User::inRandomOrder()->first()->id ?? User::factory()->create()->id,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'image' => $this->faker->imageUrl(),
-            'Tajriba'=>$this->faker->randomNumber(1,10),
+            'tajriba'=>$this->faker->randomNumber(1,10),
             'spes'=>$this->faker->randomElement(['Bolalar','Kattalar']),
         ];
     }

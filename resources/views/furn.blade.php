@@ -25,14 +25,7 @@
               <h5>
                 {{$service->name}}
               </h5>
-              <div class="price_box">
-                <h6 class="price_heading">
-                  <span>{{$service->continuity}} soat </span> {{$service->price}} $
-                </h6>
-                <a href="">
-                  Yozilish
-                </a>
-              </div>
+
             </div>
           </div>
         </div>

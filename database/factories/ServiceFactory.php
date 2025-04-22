@@ -21,7 +21,8 @@ class ServiceFactory extends Factory
             'name' => $this->faker->name(),
             'price' => $this->faker->numberBetween(1000, 10000),
             'continuity'=>$this->faker->randomNumber(1,8),
-            'user_id' => User::where('role_id', 2)->inRandomOrder()->first()?->id,
+            'category_id'=>$this->faker->numberBetween(1,3),
+            'psixolog_id'=>$this->faker->randomNumber(1,8),
         ];
     }
 }

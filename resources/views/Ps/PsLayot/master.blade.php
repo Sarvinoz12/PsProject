@@ -45,6 +45,7 @@
             <a href="{{route('ps.main')}}">Dashboard</a>
             <a href="{{route('ps.create')}}">Kurs Qo'shish</a>
             <a href="{{route('ps.index')}}">Umumiy Kurslar</a>
+            <a href="{{route('ps.bookingusers')}}">Kursga  yozilganlar</a>
         </div>
 
 @yield('ps.content')
@@ -54,6 +55,7 @@
             <a href="{{route('ps.main')}}">Dashboard</a>
             <a href="{{route('ps.create')}}">Kurs Qo'shish</a>
             <a href="{{route('ps.index')}}">Umumiy Kurslar</a>
+            <a href="{{route('ps.bookingusers')}}">Kursga  yozilganlar</a>
         </div>
         </div>
     </div>

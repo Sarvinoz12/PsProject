@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('price');
-            $table->string('image')->nullable();
-            $table->string('continuity')->default('1');
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->foreignId('category_id')->default(1)->nullable();
+            $table->string('phone');
+            $table->text('message')->nullable();
+            $table->text('status')->default('kutilmoqda')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('bookings');
     }
 };
