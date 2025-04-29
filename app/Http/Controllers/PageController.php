@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCallingRequest;
+use App\Models\Booking;
 use App\Models\Calling;
 use App\Models\Psixolog;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class PageController extends Controller
 {
@@ -24,7 +27,8 @@ public function about(){
         return view('about');
 }
 public function blog(){
-        return view('blog');
+    $psixologs=Psixolog::all();
+    return view('blog',compact('psixologs'));
 }
 public function cantact(){
 
@@ -67,30 +71,75 @@ public function services_price()
         return view('price', compact('services'));
     }
 
-    public function bookingForm($id)
+    public function bookingForm()
     {
-        $service = Service::findOrFail($id);
-        return view('booking', compact('service'));
+        $services = Service::all();
+        $psixologs = User::where('role_id', 2)->get();
+
+        return view('booking', compact('services', 'psixologs'));
     }
 
-    public function storeBooking(Request $request, $id)
+    public function storeBooking(Request $request)
     {
         $request->validate([
+            'service_id' => 'required|exists:services,id',
+            'psixolog_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'message' => 'nullable|string',
         ]);
 
-        // save booking (simple logika)
-        DB::table('bookings')->insert([
-            'service_id' => $id,
+        Booking::create([
+            'user_id' => auth()->id(),
+            'service_id' => $request->service_id,
+            'psixolog_id' => $request->psixolog_id,
             'name' => $request->name,
             'phone' => $request->phone,
             'message' => $request->message,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'status' => 'kutilmoqda',
         ]);
 
-        return redirect()->route('services.booking.form', $id)->with('success', 'Yozilish muvaffaqiyatli amalga oshirildi!');
+        return redirect()->back()->with('success', 'Yozilish muvaffaqiyatli amalga oshirildi!');
     }
+
+
+
+    public function edit()
+    {
+        return view('profile');
+    }
+
+
+        public function update(Request $request)
+    {
+        $user = auth()->user();
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:6',
+        ]);
+
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+
+        if (!empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
+        }
+
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Profil muvaffaqiyatli yangilandi!');
+    }
+    public function myBookings()
+    {
+        $bookings = Booking::with(['service', 'psixolog'])
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
+        return view('bookingPsixolog', compact('bookings'));
+    }
+
+
 }

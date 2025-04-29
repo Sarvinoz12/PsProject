@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminPageCantroller;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\RegisterController;
+//use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PsixologController;
 use App\Http\Controllers\PsPageCantroller;
@@ -31,8 +31,8 @@ Route::get('/blog', [PageController::class, 'blog'])->name('blog.page');
 Route::get('/price/frun',[PageController::class, 'services_price'])->name('price.page');
 Route::get('/furn', [PageController::class, 'furn'])->name('furn.page');
 Route::get('/xizmatlar', [PageController::class, 'search'])->name('services.search');
-Route::get('/services/{id}/booking', [PageController::class, 'bookingForm'])->name('services.booking.form');
-Route::post('/services/{id}/booking', [PageController::class, 'storeBooking'])->name('services.booking.store');
+
+
 
 Route::middleware(['auth','role:admin'])->group(function () {
 
@@ -71,3 +71,16 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.po
 Route::post('/send/cantact',[PageController::class, 'sendcantact'])->name('sendcantact');
 Route::get('/cantact', [PageController::class, 'cantact'])->name('cantact.page');
 Route::delete('/admin/calling/delete/{id}', [AdminPageCantroller::class, 'deletecalling'])->name('admin.calling.destroy');
+
+
+
+
+Route::get('/booking/form/{id}', [PageController::class, 'bookingForm'])->name('booking.form')->middleware('auth');
+Route::post('/booking/store', [PageController::class, 'storeBooking'])->name('booking.store')->middleware('auth');
+Route::get('/profile', [PageController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::put('/profile', [PageController::class, 'update'])->name('profile.update')->middleware('auth');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/bookings', [PageController::class, 'myBookings'])->name('profile.bookings');
+});

@@ -36,7 +36,7 @@
                                         <h6 class="price_heading">
                                             <span>{{ $service->continuity }} soat</span> {{ $service->price }} $
                                         </h6>
-                                        <a href="{{route('services.booking.form',$service->id)}}  ">Yozilish</a>
+                                        <a href="{{route('booking.form',$service->id)}}  ">Yozilish</a>
                                     </div>
                                 </div>
                             </div>

@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('phone');
-            $table->text('message')->nullable();
-            $table->text('status')->default('kutilmoqda')->nullable();
+
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); // foydalanuvchi
+            $table->foreignId('service_id')->nullable()->constrained('services')->cascadeOnDelete();
+            $table->foreignId('psixolog_id')->nullable()->constrained('users')->cascadeOnDelete(); // psixolog ham users jadvalidan
+
+            $table->string('name');     // foydalanuvchi ismi (yoki alohida kiritilsa)
+            $table->string('phone');    // telefon raqam
+            $table->text('message')->nullable(); // izoh
+            $table->string('status')->default('kutilmoqda'); // holat
+
             $table->timestamps();
         });
     }

@@ -11,73 +11,33 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          PSIXALOGIK TESTLAR
+          Mutaxasislar
         </h2>
       </div>
       <div class="row">
+          @foreach($psixologs as $psixlog)
+
         <div class="col-md-6 col-lg-4 mx-auto">
           <div class="box">
             <div class="img-box">
-              <img src="images/test1.png" alt="">
+              <img src="{{asset('storage/'.$psixlog->image)}}" alt="">
             </div>
             <div class="detail-box">
               <h6>
-                <b>Rasmda birinchi nimani ko'rdingiz</b>
+                <b>Name: {{$psixlog->name}}</b>
               </h6>
               <p>
-                <b>ROBOT:</b>
-Siz juda ko‘p ishlaysiz hattoki, ta’til vaqtingizda ham deyarli dam olishga chiqmaysiz. Unutmang, hamisha o‘zingiz haqingizda qayg‘urishingiz uchun vaqt topiladi.<br><b>QUTI:</b>
-G‘amxo‘rlik qilish, g‘amxo‘rlik qilish, g‘amxo‘rlik qilish…. Butun hayotingiz ko‘z o‘ngingizda o‘tib ketayotganidan xabaringiz bormi?!<br><b>QO‘LLAR:</b>
-Siz juda ajoyib, hamsuhbat insonsiz. Sizning doim katta muloqot doirangiz va tarafdorlaringiz mavjud.
-
+                <b>Tajribasi: {{$psixlog->tajriba}}</b>
+                  <br>
+                <b>Tajribasi: {{$psixlog->spes}}</b>
               </p>
-
+                <a href="{{route('booking.form',$psixlog->id)}} ">Kursga yozilish</a>
+                <a href="">Habar yuborish</a>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/test2.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h6>
-               <b>Rasmda birinchi nimani ko'rdingiz</b>
-              </h6>
-              <p>
-               <b>INSON YUZI:</b>
 
-Siz odamlar bilan yaxshi munosabat o‘rnatadigan, sezgir va empatik insonsiz.
-Siz boshqalarning his-tuyg‘ularini tushunish va ularga yordam berishga moyilsiz.<br> <b>IKKITA QO'l:</b>
-
-Siz realistik va amaliy fikrlovchi odamsiz.
-Oddiy narsalarda ham chuqur ma’nolarni izlashga moyilsiz.<br><b>ABSTRAKT SHAKL YOKI NAQSH:</b>Siz ijodiy va noan’anaviy fikrlaydigan insonsiz.
-Oddiy narsalarda ham chuqur ma’nolarni izlashga moyilsiz.
-
-              </p>
-
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/test3.png" alt="">
-            </div>
-            <div class="detail-box">
-              <h6>
-                <b>Rasmda birinchi nimani ko'rdingiz</b>
-              </h6>
-              <p>
-                <b>HAYVON:</b>Siz mustaqil va kuzatuvchan insonsiz.
-Har bir vaziyatni puxta o‘rganib, keyin qaror qabul qilasiz.<br><b>INSON YUZI:</b>Siz ijtimoiy va ochiq insonsiz, odamlar bilan tez chiqishib keta olasiz.
-Sizga jamoada ishlash yoqadi va boshqalarning his-tuyg‘ularini tushuna olasiz.<br><b>ABSTRAKT SHAKL YOKI NAQSH:</b>Siz ijodiy va innovatsion fikrlaydigan insonsiz.
-Oddiy narsalardan ham yangi g‘oyalar chiqarish qobiliyatingiz bor.
-              </p>
-
-            </div>
-          </div>
-        </div>
+          @endforeach
       </div>
     </div>
   </section>

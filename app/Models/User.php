@@ -53,11 +53,15 @@ class User extends Authenticatable
     {
         $this->hasMany(Service::class);
     }
-    public function psixolog()
-    {
-        return $this->hasOne(Psixolog::class);
-    }
+//    public function psixolog()
+//    {
+//        return $this->hasOne(Psixolog::class);
+//    }
     public function calling(){
         return $this->hasOne(Calling::class);
+    }
+    public function receivedBookings()
+    {
+        return $this->hasMany(Booking::class, 'psixolog_id');
     }
 }

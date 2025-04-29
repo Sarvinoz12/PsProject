@@ -82,7 +82,7 @@
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="userDropdown">
-
+                            <a class="dropdown-item" href="{{route('profile.edit')}}">Profil</a>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Chiqish
                             </a>
