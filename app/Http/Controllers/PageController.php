@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Calling;
 use App\Models\Psixolog;
 use App\Models\Service;
+use App\Models\Tests;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -18,10 +19,10 @@ use Illuminate\Support\Facades\Hash;
 class PageController extends Controller
 {
 public function index(){
-
+        $tests=Tests::all();
         $psixologs = Psixolog::all();
         $services= Service::take(6)->get();
-        return view('index',compact('psixologs','services'));
+        return view('index',compact('psixologs','services','tests'));
 }
 public function about(){
         return view('about');

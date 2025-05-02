@@ -30,9 +30,12 @@
                 <b>Tajribasi: {{$psixlog->tajriba}}</b>
                   <br>
                 <b>Tajribasi: {{$psixlog->spes}}</b>
+
               </p>
+                @auth()
                 <a href="{{route('booking.form',$psixlog->id)}} ">Kursga yozilish</a>
                 <a href="">Habar yuborish</a>
+                @endauth
             </div>
           </div>
         </div>

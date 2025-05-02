@@ -59,6 +59,13 @@ Route::get('/ps/show/all/booking/user', [PsixologController::class, 'bookinguser
 Route::post('/bookings/{id}/confirm', [PsixologController::class, 'confirm'])->name('bookings.confirm');
 Route::delete('/bookings/{id}', [PsixologController::class, 'destroy_booking'])->name('bookings.destroy');
 
+Route::get('/ps/all/tests',[PsPageCantroller::class,'alltests'])->name('ps.alltests');
+Route::get('/ps/create/test',[PsPageCantroller::class, 'addtests'])->name('ps.createtest');
+Route::post('/ps/create/test',[PsPageCantroller::class,'createtest'])->name('ps.storetest');
+Route::get('/ps/update/test/{id}',[PsPageCantroller::class, 'edittest'])->name('ps.edittest');
+Route::put('/ps/test/update/{id}',[PsPageCantroller::class, 'updatetest'])->name('ps.updateTest');
+Route::delete('ps/delete/test/{id}', [PsPageCantroller::class, 'deleteTest'])->name('ps.deleteTest');
+
 });
 
 

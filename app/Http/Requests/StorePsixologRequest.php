@@ -11,18 +11,30 @@ class StorePsixologRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
     public function rules(): array
     {
+        $imageRule = $this->isMethod('post') ? 'required|image|mimes:jpg,jpeg,png,gif|max:2048' : 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048';
+
         return [
-            //
+            'image' => $imageRule,
+            'question' => 'required|string|max:1000',
+
+            'answer_a' => 'required|string|max:255',
+            'description_a' => 'nullable|string|max:1000',
+
+            'answer_b' => 'required|string|max:255',
+            'description_b' => 'nullable|string|max:1000',
+
+            'answer_c' => 'required|string|max:255',
+            'description_c' => 'nullable|string|max:1000',
+
+            'answer_d' => 'required|string|max:255',
+            'description_d' => 'nullable|string|max:1000',
         ];
+
     }
 }

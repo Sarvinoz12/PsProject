@@ -24,4 +24,9 @@ class Psixolog extends Model
     {
         return $this->hasMany(Service::class);
     }
+
+    public function tests()
+    {
+        return $this->hasMany(Tests::class);
+    }
 }
